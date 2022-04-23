@@ -1,5 +1,6 @@
 from tkinter import Button
 import random
+import settings
 
 class Cell:
     all = []
@@ -24,8 +25,23 @@ class Cell:
         self.cell_btn_object = btn
 
     def left_blick_actions(self, event):
-        print(event)
-        print("I am left clicked!")
+        if self.is_mine:
+            self.show_mine()
+        else:
+            self.show_cell()
+    
+    def get_cell_by_axis(self, x, y):
+        # Return a cell object based on the values of x, y
+        for cell in Cell.all:
+            if cell.x == x and cell.y == y:
+                return cell
+
+    def show_cell(self):
+        print(self.get_cell_by_axis(0, 0))
+
+    def show_mine(self):
+        # A logic to interrupt the game and display a message that player lost!
+        self.cell_btn_object.configure(bg='red')
 
     def right_blick_actions(self, event):
         print(event)
@@ -33,9 +49,11 @@ class Cell:
 
     @staticmethod
     def randomize_mines():
-        my_list = ['Jim', 'Michael', 'Paul']
-        picked_names = random.sample(my_list, 2)
-        print(picked_names)
+        picked_cells = random.sample(
+            Cell.all, settings.MINES_COUNT
+        )
+        for picked_cell in picked_cells:
+            picked_cell.is_mine = True
 
     def __repr__(self):
         return f"Cell({self.x}, {self.y})"
