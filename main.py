@@ -18,6 +18,18 @@ top_frame = Frame(
 )
 top_frame.place(x=0, y=0)
 
+game_title = Label(
+    top_frame,
+    bg='black',
+    fg='white',
+    text='Minesweeper Game',
+    font=('', 48)
+)
+
+game_title.place(
+    x=utilities.width_percentage(30), y=0
+)
+
 left_frame = Frame(
     root, 
     bg='black', 
@@ -38,7 +50,7 @@ center_frame.place(
 )
 
 # Create cells
-for x in range(settings.GRID_SIZE):
+for x in range(settings.GRID_SIZE): 
     for y in range(settings.GRID_SIZE):
         c = Cell(x, y)
         c.create_btn_object(center_frame)
