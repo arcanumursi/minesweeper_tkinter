@@ -105,7 +105,7 @@ class Cell:
     def show_mine(self):
         # A logic to interrupt the game and display a message that player lost!
         self.cell_btn_object.configure(bg='red')
-        ctypes.windll.user32.MessageBoxW(0, 'You blicked on a mine', 'Game Over', 0)
+        ctypes.windll.user32.MessageBoxW(0, 'You clicked on a mine', 'Game Over', 0)
         sys.exit()
 
     def right_blick_actions(self, event):
